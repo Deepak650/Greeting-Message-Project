@@ -45,7 +45,7 @@ To get started with this project, follow these steps:
 
 ## Screenshot
 
-![Webpage Screenshot](screenshot.png)  <!-- Replace with your actual screenshot file -->
+!![Webpage Screenshot](images/screenshot.png)  <!-- Replace with your actual screenshot file -->
 
 ## License
 
