@@ -11,9 +11,6 @@ var hrs = today.getHours();
         document.write('Good Evening, '+name+'!');
     }
     document.write('<br/>')
-
-
-
-//prompt('text', default text')
-//Document.writeln();
-//https://www.w3schools.com/jsref/met_doc_write.asp
+    function displayMessage() {
+        alert("Hello! Thanks for visiting this stylish webpage.");
+    }
