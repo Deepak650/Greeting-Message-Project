@@ -20,4 +20,4 @@ spec:
           imagePullPolicy: Always
           ports:  # Correct indentation here
             - containerPort: 8080
-      restartPolicy: Always
+     ## restartPolicy: Always
