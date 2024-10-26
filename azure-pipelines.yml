@@ -47,31 +47,4 @@ stages:
         PathtoPublish: '$(Build.ArtifactStagingDirectory)'
         ArtifactName: 'drop'
         publishLocation: 'Container'
-    - task: AzureMonitorAlerts@0
-      inputs:
-        azureSubscription: 'Free Trial(226e94f1-cab8-45b1-b154-b9f9e767cce8)'
-        ResourceGroupName: 'gmp'
-        ResourceType: 'Microsoft.Insights/components'
-        ResourceName: 'gmpin'
-        AlertRules: 'metric'
-    - task: AzureMonitorAlerts@0
-      inputs:
-        azureSubscription: 'Free Trial(226e94f1-cab8-45b1-b154-b9f9e767cce8)'
-        ResourceGroupName: 'gmp'
-        ResourceType: 'Microsoft.Insights/components'
-        ResourceName: 'gmpin'
-        AlertRules: 'serviceHealth'
-    - task: AzureMonitorAlerts@0
-      inputs:
-        azureSubscription: 'Free Trial(226e94f1-cab8-45b1-b154-b9f9e767cce8)'
-        ResourceGroupName: 'gmp'
-        ResourceType: 'Microsoft.Insights/components'
-        ResourceName: 'gmpin'
-        AlertRules: 'activityLog'
-    - task: AzureMonitorAlerts@0
-      inputs:
-        azureSubscription: 'Free Trial(226e94f1-cab8-45b1-b154-b9f9e767cce8)'
-        ResourceGroupName: 'gmp'
-        ResourceType: 'Microsoft.Compute/virtualMachines'
-        ResourceName: 'gmp'
-        AlertRules: 'serviceHealth'
+
