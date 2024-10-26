@@ -1,0 +1,82 @@
+# Docker
+# Build and push an image to Azure Container Registry
+# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+
+trigger:
+- main
+
+resources:
+- repo: self
+
+variables:
+  # Container registry service connection established during pipeline creation
+  dockerRegistryServiceConnection: '3f117b0d-9ec3-4204-a89e-5392d5f2da76'
+  imageRepository: 'greetingmessageproject'
+  containerRegistry: 'gmpcontainer.azurecr.io'
+  dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
+  tag: '$(Build.BuildId),latest'
+
+pool:
+ name: 'azureagent'
+
+stages:
+- stage: Build
+  displayName: Build and push stage
+  jobs:
+  - job: Build
+    displayName: Build
+
+    steps:
+    - task: Docker@2
+      displayName: Build and push an image to container registry
+      inputs:
+        containerRegistry: 'gmpcontainer'
+        repository: '$(imageRepository)'
+        command: 'buildAndPush'
+        Dockerfile: '**/Dockerfile'
+        tags: '$(tag)'
+    - task: CopyFiles@2
+      inputs:
+        SourceFolder: '$(Build.SourcesDirectory)/k8s/manifest'
+        Contents: '**'
+        TargetFolder: '$(Build.ArtifactStagingDirectory)/$(ARTIFACT_NAME)'
+        CleanTargetFolder: true
+        OverWrite: true
+    - task: PublishBuildArtifacts@1
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: 'drop'
+        publishLocation: 'Container'
+    - task: AzureMonitorAlerts@0
+      inputs:
+        azureSubscription: 'Free Trial(226e94f1-cab8-45b1-b154-b9f9e767cce8)'
+        ResourceGroupName: 'gmp'
+        ResourceType: 'Microsoft.Insights/components'
+        ResourceName: 'gmpin'
+        AlertRules: 'metric'
+    - task: AzureMonitorAlerts@0
+      inputs:
+        azureSubscription: 'Free Trial(226e94f1-cab8-45b1-b154-b9f9e767cce8)'
+        ResourceGroupName: 'gmp'
+        ResourceType: 'Microsoft.Insights/components'
+        ResourceName: 'gmpin'
+        AlertRules: 'serviceHealth'
+    - task: AzureMonitorAlerts@0
+      inputs:
+        azureSubscription: 'Free Trial(226e94f1-cab8-45b1-b154-b9f9e767cce8)'
+        ResourceGroupName: 'gmp'
+        ResourceType: 'Microsoft.Insights/components'
+        ResourceName: 'gmpin'
+        AlertRules: 'activityLog'
+    - task: AzureMonitor@1
+      inputs:
+        connectedServiceNameARM: 'Free Trial(226e94f1-cab8-45b1-b154-b9f9e767cce8)'
+        ResourceGroupName: 'gmp'
+        filterType: 'none'
+    - task: AzureMonitorAlerts@0
+      inputs:
+        azureSubscription: 'Free Trial(226e94f1-cab8-45b1-b154-b9f9e767cce8)'
+        ResourceGroupName: 'gmp'
+        ResourceType: 'Microsoft.Compute/virtualMachines'
+        ResourceName: 'gmp'
+        AlertRules: 'serviceHealth'
