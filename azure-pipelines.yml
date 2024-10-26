@@ -68,11 +68,6 @@ stages:
         ResourceType: 'Microsoft.Insights/components'
         ResourceName: 'gmpin'
         AlertRules: 'activityLog'
-    - task: AzureMonitor@1
-      inputs:
-        connectedServiceNameARM: 'Free Trial(226e94f1-cab8-45b1-b154-b9f9e767cce8)'
-        ResourceGroupName: 'gmp'
-        filterType: 'none'
     - task: AzureMonitorAlerts@0
       inputs:
         azureSubscription: 'Free Trial(226e94f1-cab8-45b1-b154-b9f9e767cce8)'
