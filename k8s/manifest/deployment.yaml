@@ -15,8 +15,8 @@ spec:
         app: gmpapp
     spec:
       containers:
-        - name: gmpappcontainer
-          image: bmicontainer.azurecr.io/bmicalculator:latest
+        - name: gmpcontainer
+          image: gmpcontainer.azurecr.io/greetingmessageproject:latest
           imagePullPolicy: Always
           ports:  # Correct indentation here
             - containerPort: 8080
