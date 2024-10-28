@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: bmiapp
+  name: gmpapp
   labels:
-    app: bmiapp
+    app: gmpapp
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: bmiapp
+      app: gmpapp
   template:
     metadata:
       labels:
-        app: bmiapp
+        app: gmpapp
     spec:
       containers:
-        - name: bmicontainer
-          image: bmicontainer.azurecr.io/bmicalculator:latest
+        - name: gmpcontainer
+          image: gmpcontainer.azurecr.io/greetingmessageproject:latest
           imagePullPolicy: Always
           ports:  # Correct indentation here
             - containerPort: 8080
