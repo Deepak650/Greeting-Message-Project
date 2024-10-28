@@ -1,83 +1,121 @@
-/* Reset basic styles */
-* {
+/* Full-height and centered background image */
+body, html {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-}
-
-/* Full page background image */
-body, .background-image {
-    background: url('background.jpg') no-repeat center center/cover;
-    height: 100vh;
-    font-family: 'Arial', sans-serif;
-    color: #fff;
+    height: 100%;
+    font-family: 'Roboto', sans-serif; /* Modern sans-serif font */
     display: flex;
-    justify-content: center;
     align-items: center;
-    position: relative;
+    justify-content: center;
+    overflow: hidden;
+    background-color: #121212; /* Dark background for a techy look */
 }
 
-/* Dark overlay to make content more readable */
-.background-image::before {
-    content: '';
+/* Background image container */
+.background-image {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background-image: url('background.jpg'); /* Replace with your image */
+    background-size: cover;
+    background-position: center;
+    filter: blur(8px);
+    z-index: -1;
 }
 
-/* Center the content */
+/* Main container styling */
 .container {
-    position: relative;
-    z-index: 1;
     text-align: center;
-    padding: 30px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    padding: 40px;
+    background-color: rgba(25, 25, 25, 0.9); /* Semi-transparent dark background */
+    border-radius: 20px;
     max-width: 600px;
+    width: 90%;
+    box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.5);
+    border: 3px solid #00ffcc; /* Neon border */
+    position: relative;
 }
 
 /* Logo styling */
 .logo {
-    width: 80px;
+    width: 120px; /* Adjust logo size */
     margin-bottom: 20px;
-    animation: spin 5s linear infinite;
 }
 
-/* Heading and text */
+/* Headline styling */
 h1 {
-    font-size: 2.5em;
-    margin-bottom: 10px;
-    color: #ffdfba;
+    font-size: 2.5rem;
+    color: #00ffcc; /* Neon color */
+    margin: 10px 0;
+    text-shadow: 0 0 10px rgba(0, 255, 204, 0.7); /* Glowing effect */
 }
 
+/* Paragraph styling */
 p {
-    font-size: 1.2em;
+    font-size: 1.2rem;
+    color: #ddd; /* Light gray for better contrast */
     margin-bottom: 20px;
 }
 
 /* Button styling */
 button {
-    padding: 10px 20px;
-    font-size: 1em;
-    color: #333;
-    background-color: #ffdfba;
+    padding: 12px 25px;
+    background-color: #007bff; /* Blue button */
+    color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    font-size: 18px;
+    transition: background-color 0.3s, transform 0.2s; /* Transition effects */
+    position: relative;
+    overflow: hidden;
+}
+
+button:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background-color: rgba(0, 255, 204, 0.2); /* Neon effect */
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.5s ease;
+    z-index: 0;
+}
+
+button:hover:before {
+    transform: translate(-50%, -50%) scale(1); /* Scale on hover */
 }
 
 button:hover {
-    background-color: #ff7e5f;
-    color: #fff;
+    color: #fff; /* Change text color on hover */
 }
 
-/* Animation for logo */
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+button span {
+    position: relative; /* Positioning for text */
+    z-index: 1; /* Ensures text is above the hover effect */
+}
+
+/* AI output styling */
+.ai-output {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: rgba(40, 40, 40, 0.8); /* Darker background for AI output */
+    color: #00ffcc; /* Neon text */
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Animation for fade-in */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
