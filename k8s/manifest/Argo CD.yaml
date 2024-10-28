@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: bmp-app
-  namespace: argocd
+  namespace: dev
 spec:
   destination:
     name:  bmp-cluster
