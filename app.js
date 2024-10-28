@@ -14,3 +14,7 @@ var hrs = today.getHours();
     function displayMessage() {
         alert("Hello! Thanks for visiting this stylish webpage.");
     }
+function displayMessage() {
+    const aiMessage = "Hello! You've engaged with the robotic interface!";
+    document.getElementById('ai-output').innerHTML = `<p>${aiMessage}</p>`;
+}
