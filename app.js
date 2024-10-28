@@ -12,7 +12,7 @@ var hrs = today.getHours();
     }
     document.write('<br/>')
     function displayMessage() {
-        alert("Hello! Thanks for visiting this stylish webpage.");
+        alert("Hello! Thanks for visiting this stylish webpage!.");
     }
 function displayMessage() {
     const aiMessage = "Hello! You've engaged with the robotic interface!";
